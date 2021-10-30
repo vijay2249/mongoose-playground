@@ -30,23 +30,26 @@ async function main(){
 
     const blogPost = mongoose.model("Blog", blogSchema)
 
+    // deleteOne operation
+    // await blogPost.deleteOne({_id: "617cf5f5377d944e9c73d580"})
+
     // updateOne operation
-    await blogPost.updateOne({
-      // filters
-      title: 'Welcome'
-    },
-    // updates (or) new Data to be added
-    {
-      metaData:{
-        votes: 1000
-      }
-    },
-    // callback function
-      function(err){
-        if(err)console.log(err);
-        else console.log("Updation success");
-      }
-    )
+    // await blogPost.updateOne({
+    //   // filters
+    //   title: 'Welcome'
+    // },
+    // // updates (or) new Data to be added
+    // {
+    //   metaData:{
+    //     votes: 1000
+    //   }
+    // },
+    // // callback function
+    //   function(err){
+    //     if(err)console.log(err);
+    //     else console.log("Updation success");
+    //   }
+    // )
 
     // accepts the new data to include in database
     // const newPost = new blogPost({
@@ -72,12 +75,15 @@ async function main(){
     //   mongoose.connection.close()
     // })
 
-    // const personSchema = new mongoose.Schema({
-    //   name: String,
-    //   age: Number
-    // })
+    const personSchema = new mongoose.Schema({
+      name: String,
+      age: Number
+    })
 
-    // const person = mongoose.model("Person", personSchema)
+    const person = mongoose.model("Person", personSchema)
+
+    // deleteOne operation
+    await person.deleteOne({_id: "617cd7357f6b2000664c6bda"})
 
     // const newPerson = new person({
     //   name: 'Idiot',
