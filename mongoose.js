@@ -30,20 +30,38 @@ async function main(){
 
     const blogPost = mongoose.model("Blog", blogSchema)
 
+    // updateOne operation
+    await blogPost.updateOne({
+      // filters
+      title: 'Welcome'
+    },
+    // updates (or) new Data to be added
+    {
+      metaData:{
+        votes: 1000
+      }
+    },
+    // callback function
+      function(err){
+        if(err)console.log(err);
+        else console.log("Updation success");
+      }
+    )
+
     // accepts the new data to include in database
     // const newPost = new blogPost({
     //   title: 'This is trail for validation',
     //   author: 'V1-ZEI',
-    //   content: "validation is the one inbuilt comes with mongoose package and we have to specify a required attribute to each variable in schema"
+    //   content: "validation comes with mongoose package and we have to specify a required attribute to each variable in schema"
     // })
 
     // returning error the below code
-    const newPost = new blogPost({
-      title: 'This is trail for validation without any author input not included',
-      content: "validation is the one inbuilt comes with mongoose package and we have to specify a required attribute to each variable in schema"
-    })
+    // const newPost = new blogPost({
+    //   title: 'This is trail for validation without any author input not included',
+    //   content: "validation comes with mongoose package and we have to specify a required attribute to each variable in schema"
+    // })
 
-    await newPost.save();
+    // await newPost.save();
 
     // await blogPost.find({author: 'V1-ZEI'}, function(err, filteredOutput){
     //   if(err){
@@ -92,5 +110,5 @@ async function main(){
 
   }
   catch(err){ console.log(err); }
-  finally{ mongoose.connection.close()}
 }
+mongoose.connection.close()
