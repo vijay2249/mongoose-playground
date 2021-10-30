@@ -77,7 +77,8 @@ async function main(){
 
     const personSchema = new mongoose.Schema({
       name: String,
-      age: Number
+      age: Number,
+      newBlog: blogSchema //relations between documents
     })
 
     const person = mongoose.model("Person", personSchema)
