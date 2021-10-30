@@ -8,33 +8,51 @@ async function main(){
     console.log("Connection Success");
 
     const blogSchema = new mongoose.Schema({
-      title: String,
-      author: String,
+      title: {
+        type: String,
+        required: true
+      },
+      author: {
+        type: String,
+        required: true
+      },
       content: String,
       comments: [{body: String, date: Date}],
       hidden: Boolean,
       metaData: {
-        votes: Number
+        votes: {
+          type: Number,
+          min: 0,
+          max: Number.MAX_SAFE_INTEGER
+        }
       }
     })
 
     const blogPost = mongoose.model("Blog", blogSchema)
 
+    // accepts the new data to include in database
     // const newPost = new blogPost({
-    //   title: 'This is trail inside main',
-    //   author: "V1-ZEI",
-    //   content: "make the save function as await as that returns promise"
+    //   title: 'This is trail for validation',
+    //   author: 'V1-ZEI',
+    //   content: "validation is the one inbuilt comes with mongoose package and we have to specify a required attribute to each variable in schema"
     // })
-    // await newPost.save();
 
-    await blogPost.find({author: 'V1-ZEI'}, function(err, filteredOutput){
-      if(err){
-        console.log(err);
-      }else{
-        console.log(filteredOutput);
-      }
-      mongoose.connection.close()
+    // returning error the below code
+    const newPost = new blogPost({
+      title: 'This is trail for validation without any author input not included',
+      content: "validation is the one inbuilt comes with mongoose package and we have to specify a required attribute to each variable in schema"
     })
+
+    await newPost.save();
+
+    // await blogPost.find({author: 'V1-ZEI'}, function(err, filteredOutput){
+    //   if(err){
+    //     console.log(err);
+    //   }else{
+    //     console.log(filteredOutput);
+    //   }
+    //   mongoose.connection.close()
+    // })
 
     // const personSchema = new mongoose.Schema({
     //   name: String,
@@ -74,6 +92,5 @@ async function main(){
 
   }
   catch(err){ console.log(err); }
+  finally{ mongoose.connection.close()}
 }
-
-// mongoose.connection.close();
