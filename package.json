@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "description": "",
   "main": "mongoose.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node mongoose.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "vijay",
   "license": "ISC",
