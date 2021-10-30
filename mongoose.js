@@ -34,13 +34,34 @@ async function main(){
 
     const person = mongoose.model("Person", personSchema)
 
-    const newPerson = new person({
-      name: 'Idiot',
+    // const newPerson = new person({
+    //   name: 'Idiot',
+    //   age: 25
+    // })
+
+    // const result = await newPerson.save()
+    // console.log(`New person added with id: ${result._id}`);
+
+    const vijay = new person({
+      name: 'VIJAY',
+      age: 20
+    })
+    const ajay = new person({
+      name: 'AJAY',
+      age: 22
+    })
+    const sai = new person({
+      name: 'SAI',
       age: 25
     })
 
-    const result = await newPerson.save()
-    console.log(`New person added with id: ${result._id}`);
+    await person.insertMany([vijay, ajay, sai], function(err){
+      if(err){
+        console.log(err);
+      }else{
+        console.log("Insertion success");
+      }
+    })
 
   }
   catch(err){ console.log(err); }
