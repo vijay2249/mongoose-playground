@@ -10,11 +10,11 @@ async function main(){
     const blogSchema = new mongoose.Schema({
       title: {
         type: String,
-        required: true
+        required: [true, "Post title is required"]
       },
       author: {
         type: String,
-        required: true
+        required: [true, "Author Name is required filed to post a content"]
       },
       content: String,
       comments: [{body: String, date: Date}],
